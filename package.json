@@ -1,0 +1,23 @@
+{
+  "name": "eat-da-burger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliezerwohl/eatDaBurger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliezerwohl/eatDaBurger/issues"
+  },
+  "homepage": "https://github.com/eliezerwohl/eatDaBurger#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-session": "^1.13.0"
+  }
+}
