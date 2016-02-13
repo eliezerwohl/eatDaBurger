@@ -8,9 +8,8 @@ var connection = mysql.createConnection({
   database : 'burgers_db'
 });
 
-connection.query('SELECT * FROM burgers', function(err, col) {
-  if (err) throw err;
- 
-  console.log('The solution is: ', col);
-});
- 
+
+
+
+
+module.exports=connection;
