@@ -9,6 +9,10 @@ var connection =require("./config/connection.js")
 app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
 var routes = require('./controllers/burgers_controller.js');
 
 app.use('/', routes);
