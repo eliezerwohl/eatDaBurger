@@ -5,12 +5,12 @@ var router = express.Router();
 
 
 
+
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 var PORT = process.env.NODE_ENV || 8080;
 // var methodOverride = require('Method-override');
-var bodyParser = require('body-parser');
 
 
 // app.get("/", function(req, res){
@@ -28,13 +28,14 @@ router.get('/', function(req,res) {
   });
 });
 
-router.get("/newBurger/:burgerName", function(req, res) {
-  burger.newBurger(req.params.burgerName);
+router.post("/newburger", function(req, res) {
+  burger.newBurger(req.body.burgerName);
   res.redirect("/")
 })
 
-router.get("/devour/:burgerName", function(req, res) {
-  burger.devour(req.params.burgerName);
+router.post("/devour", function(req, res) {
+  burger.devour(req.body.id);
+console.log(req.body.id)
   res.redirect("/")
 })
 
