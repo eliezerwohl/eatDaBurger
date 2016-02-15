@@ -2,16 +2,27 @@ var burger = require ("../models/burger.js");
 var express = require("express");
 var app = express();
 
+var exphbs = require('express-handlebars');
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 var PORT = process.env.NODE_ENV || 8080;
 // var methodOverride = require('Method-override');
 var bodyParser = require('body-parser');
 
+
 app.get("/", function(req, res){
-  res.send("this is the main page");
-})
+  burger.allBurger(function(data){
+    console.log(data)
+    })
+  });
+
+// super_clubs.findAllMembers(function(super_clubs_data){
+// // res.render('index', col);
+
+
 
 app.get("/viewAll", function(req, res){
-  console.log(burger.allBurger());
+burger.allBurger();
   res.redirect("/")
 })
 
@@ -26,6 +37,7 @@ app.get("/devour/:burgerName", function(req, res){
 })
 
 app.listen(PORT,function(){
+
   console.log("Listenign on %s", PORT)
 })
 
