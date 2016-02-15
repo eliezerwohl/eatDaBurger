@@ -9,16 +9,13 @@ var connection =require("./config/connection.js")
 app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-connection.query('SELECT * FROM burgers', function(err, col) {
-  if (err) throw err;
- 
-  console.log('The solution is: ', col);
-});
+var routes = require('./controllers/burgers_controller.js');
 
+app.use('/', routes);
+app.use('/viewAll', routes);
+app.use('/newBurger', routes);
+app.use('/devour', routes);
 
-app.get("/", function(req, res){
-  res.send("hey mr plinkett");
-})
 
 app.listen(PORT,function(){
   console.log("Listenign on %s", PORT)

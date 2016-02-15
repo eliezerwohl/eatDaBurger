@@ -1,8 +1,14 @@
 var orm = require ("../config/orm.js");
  
-burger ={
+var burger ={
   newBurger:orm.newBurger,
   devour :orm.devour,
-  allBurger :orm.allBurger,
+  allBurger : function(cb) {
+    orm.allBurger('burgers', function(res){
+      cb(res)
+    });
+  }
 }
+
 module.exports = burger;
+
