@@ -6,8 +6,9 @@
 
    <div>
     <span>{{this.id}} {{this.burgerName}} </span>
-    <form method="POST" action="/devour">
-    <input type="hidden" type="text" name="member_id" id={{this.burgerName}}>
+    <form method="post" action="/devour/{{this.burgerName}}"">
+    <input type="hidden" type="text" name={{this.burgerName}} value={{this.id}}>
+
           <button type="submit" class="btn btn-default">CONSUME THIS BURGER!</button>
    </div>
    {{/unless}}

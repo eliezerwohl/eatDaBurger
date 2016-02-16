@@ -33,9 +33,9 @@ router.post("/newburger", function(req, res) {
   res.redirect("/")
 })
 
-router.post("/devour", function(req, res) {
-  burger.devour(req.body.id);
-console.log(req.body.id)
+router.post("/devour/:burgerName", function(req, res) {
+  console.log(req.params.burgerName)
+  burger.devour(req.params.burgerName)
   res.redirect("/")
 })
 
