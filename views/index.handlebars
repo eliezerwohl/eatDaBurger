@@ -1,36 +1,38 @@
-<h1>Burgers to be eaten</h1>
-
-<div>
-  {{#each data}}
-  {{#unless this.devoured}}
-
-   <div>
-    <span>{{this.id}} {{this.burgerName}} </span>
-    <form method="post" action="/devour/{{this.burgerName}}"">
-    <input type="hidden" type="text" name={{this.burgerName}} value={{this.id}}>
-
-          <button type="submit" class="btn btn-default">CONSUME THIS BURGER!</button>
-   </div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-md-6 text-center">
+    <h4> Burgers awaiting to be eaten</h4>
+    {{#each data}}
+    {{#unless this.devoured}}
+      <h5>{{this.burgerName}}</h5>
+      <form method="post" action="/devour/{{this.burgerName}}"">
+    
+      <button type="submit" class="btn btn-default">CONSUME THIS BURGER!</button>
+      </form> 
    {{/unless}}
-
    {{/each}}
-</div>
-
-  <h1> totally eaten this burger </h1>
-<div>
-  {{#each data}}
-{{#if this.devoured}}
-   <div>
-    <span>{{this.id}} {{this.burgerName}} </span>
+    </div>
+    <div class="col-md-6">
+    <h4 class="text-center"> Hall of eaten burgers </h4>
+   {{#each data}}
+   {{#if this.devoured}}
+   <div class='text-center'>
+    <span>{{this.burgerName}} </span>
    </div>
    {{/if}}
    {{/each}}
 </div>
 
-
-  <h2> enter new burger down below</h2>
+    
+    <div class="col-md-4 col-md-offset-4">
+       <h2> enter burger name below</h2>
 
 <form action="/newburger" method="POST" >
   <input class="form-control" type="text" name="burgerName" value="">
-  <button type="submit">Submit</button>
+  <button type="submit">CREATE!</button>
 </form>
+    </div>
+
+
+
+
