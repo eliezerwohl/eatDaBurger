@@ -35,10 +35,17 @@ router.post("/newburger", function(req, res) {
 })
 })
 router.post("/devour/:burgerName", function(req, res) {
-  console.log(req.params.burgerName)
-  burger.devour(req.params.burgerName)
-  res.redirect("/")
-})
+  var burgerName = req.params.burgerName;
+ Burgers.update(
+  // Set Attribute values 
+        { devoured:1 },
+  // Where clause / criteria 
+        {where:{burgerName:burgerName}} 
+ ).then(function() {
+    res.redirect('/');
+  });
+});
+
 
 module.exports = router;
 
