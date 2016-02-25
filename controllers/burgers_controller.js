@@ -8,13 +8,21 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 var PORT = process.env.NODE_ENV || 8080;
 
+
+
+
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('burgers_db', 'root');
+
+var Burgers = sequelize.define('Burgers', {
+ burgerName: Sequelize.STRING,
+ devoured: {type:Sequelize.BOOLEAN, allowNull: false, defaultValue: false}
+  // lastname: Sequelize.STRING
+});
 
 router.get('/', function(req,res) {
 var s = 'SELECT * FROM burgers;';
 sequelize.query(s).spread(function(results, metadata) {
-  console.log(results)
   // Results will be an empty array and metadata will contain the number of affected rows.
   res.render('index', {results});
 })
@@ -22,8 +30,9 @@ sequelize.query(s).spread(function(results, metadata) {
 
 
 router.post("/newburger", function(req, res) {
-  burger.newBurger(req.body.burgerName);
-  res.redirect("/")
+  Burgers.create(req.body).then(function() {
+    res.redirect('/');
+})
 })
 router.post("/devour/:burgerName", function(req, res) {
   console.log(req.params.burgerName)
@@ -32,3 +41,9 @@ router.post("/devour/:burgerName", function(req, res) {
 })
 
 module.exports = router;
+
+// sequelize.sync().then(function(){
+//   app.listen(PORT, function() {
+//     console.log("Listening on port %s", PORT);
+//   })
+// });
