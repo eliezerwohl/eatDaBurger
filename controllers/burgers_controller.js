@@ -11,8 +11,9 @@ var PORT = process.env.NODE_ENV || 8080;
 
 
 
-var Sequelize = require('sequelize');
+var Sequelize = require('sequelize').connect();;
 var sequelize = new Sequelize('burgers_db', 'root');
+var sequelizeHeroku = require("sequelize-heroku");
 
 var Burgers = sequelize.define('Burgers', {
  burgerName: Sequelize.STRING,
