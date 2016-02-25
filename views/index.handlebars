@@ -2,7 +2,7 @@
   <div class="row-fluid">
     <div class="col-md-6 text-center">
       <h4> Burgers awaiting to be eaten</h4>
-      {{#each data}}
+      {{#each results}}
       {{#unless this.devoured}}
       <div style="border:1px solid gray;">
         <h5>{{this.burgerName}}</h5>
@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-6">
       <h4 class="text-center"> Hall of eaten burgers </h4>
-     {{#each data}}
+     {{#each results}}
      {{#if this.devoured}}
       <div class='text-center'>
         <span>{{this.burgerName}} </span>
