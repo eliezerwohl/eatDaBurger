@@ -9,11 +9,16 @@ app.set('view engine', 'handlebars');
 var PORT = process.env.NODE_ENV || 8080;
 
 
+var clearDb = {
+  database_url: 'mysql://b206587c38cdc2:fb2fdf4a@us-cdbr-iron-east-03.cleardb.net/heroku_8d174b69c6ac177?reconnect=true',
+  database_username: 'b206587c38cdc2',
+  database_password: 'fb2fdf4a'
+}
+var connection = new Sequelize('clearDb.database_url', 'clearDb.database_username', 'clearDb.database_password');
 
-
-var Sequelize = require('sequelize').connect();;
+var Sequelize = require('sequelize');
 var sequelize = new Sequelize('burgers_db', 'root');
-var sequelizeHeroku = require("sequelize-heroku");
+
 
 var Burgers = sequelize.define('Burgers', {
  burgerName: Sequelize.STRING,

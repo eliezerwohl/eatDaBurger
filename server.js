@@ -12,14 +12,56 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+require("dotenv").config();
 
-var routes = require('./controllers/burgers_controller.js');
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('burgers_db', 'root');
 
-app.use('/', routes);
-app.use('/viewAll', routes);
-app.use('/newBurger', routes);
-app.use('/devour', routes);
 
+if(process.env.NODE_ENV === 'production') {
+  // HEROKU DB
+  console.log(process.env.JAWSDB_URL);
+
+  var connection = new Sequelize(process.env.JAWSDB_URL);
+}
+else {
+  // LOCAL DB
+  var connection = new Sequelize('rutgersflyers_db', 'root');
+}
+
+var Burgers = sequelize.define('Burgers', {
+ burgerName: Sequelize.STRING,
+ devoured: {type:Sequelize.BOOLEAN, allowNull: false, defaultValue: false}
+  // lastname: Sequelize.STRING
+});
+
+app.get('/', function(req,res) {
+var s = 'SELECT * FROM burgers;';
+sequelize.query(s).spread(function(results, metadata) {
+  // Results will be an empty array and metadata will contain the number of affected rows.
+  res.render('index', {results});
+})
+  });
+
+
+app.post("/newburger", function(req, res) {
+  Burgers.create(req.body).then(function() {
+    res.redirect('/');
+})
+})
+app.post("/devour/:burgerName", function(req, res) {
+  var burgerName = req.params.burgerName;
+ Burgers.update(
+  // Set Attribute values 
+        { devoured:1 },
+  // Where clause / criteria 
+        {where:{burgerName:burgerName}} 
+ ).then(function() {
+    res.redirect('/');
+  });
+});
+
+ connection.sync();
 
 
 app.listen(PORT,function(){
