@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-
+var mysql= require("mysql");
 var Sequelize = require('sequelize');
 
 
