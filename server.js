@@ -2,8 +2,8 @@ var express = require("express");
 var app = express();
 var PORT = process.env.PORT || 8000;
 var bodyParser = require('body-parser');
+require("dotenv").config();
 var expressHandlebars = require('express-handlebars');
-var connection =require("./config/connection.js")
 
 app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -11,7 +11,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-require("dotenv").config();
+
 
 var Sequelize = require('sequelize');
 
