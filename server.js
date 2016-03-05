@@ -1,7 +1,6 @@
 var express = require("express");
 var app = express();
 var PORT = process.env.PORT || 8000;
-var methodOverride = require('Method-override');
 var bodyParser = require('body-parser');
 var expressHandlebars = require('express-handlebars');
 var connection =require("./config/connection.js")
