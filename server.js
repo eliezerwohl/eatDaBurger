@@ -15,18 +15,18 @@ app.use(bodyParser.urlencoded({
 require("dotenv").config();
 
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('burgers_db', 'root');
+
 
 
 if(process.env.NODE_ENV === 'production') {
   // HEROKU DB
   console.log(process.env.JAWSDB_URL);
 
-  var connection = new Sequelize(process.env.JAWSDB_URL);
+  var sequelize = new Sequelize(process.env.JAWSDB_URL);
 }
 else {
   // LOCAL DB
-  var connection = new Sequelize('burgers_db', 'root');
+  var sequelize = new Sequelize('burgers_db', 'root');
 }
 
 var Burgers = sequelize.define('Burgers', {
