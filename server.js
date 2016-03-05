@@ -35,11 +35,16 @@ var Burgers = connection.define('Burgers', {
 });
 
 app.get('/', function(req,res) {
-var s = 'SELECT * FROM burgers';
-connection.query(s).spread(function(results, metadata) {
-  // Results will be an empty array and metadata will contain the number of affected rows.
-  res.render('index', {results});
-})
+Burgers.findAll().then(function(Burgers) {
+    res.render('index', {Burgers : Burgers}
+      )}
+    )
+
+// var s = 'SELECT * FROM burgers';
+// connection.query(s).spread(function(results, metadata) {
+//   // Results will be an empty array and metadata will contain the number of affected rows.
+//   res.render('index', {results});
+// })
   });
 
 
