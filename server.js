@@ -21,7 +21,7 @@ if(process.env.NODE_ENV === 'production') {
   // HEROKU DB
   console.log(process.env.JAWSDB_URL);
 
-  var sequelize = new Sequelize(process.env.JAWSDB_URL);
+  var connection = new Sequelize(process.env.JAWSDB_URL);
 }
 else {
   // LOCAL DB
@@ -60,7 +60,7 @@ app.post("/devour/:burgerName", function(req, res) {
   });
 });
 
- connection.sync();
+connection.sync();
 
 
 app.listen(PORT,function(){
