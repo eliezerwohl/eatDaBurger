@@ -26,7 +26,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 else {
   // LOCAL DB
-  var connection = new Sequelize('rutgersflyers_db', 'root');
+  var connection = new Sequelize('burgers_db', 'root');
 }
 
 var Burgers = sequelize.define('Burgers', {
