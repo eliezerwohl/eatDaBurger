@@ -26,10 +26,10 @@ if(process.env.NODE_ENV === 'production') {
 }
 else {
   // LOCAL DB
-  var sequelize = new Sequelize('burgers_db', 'root');
+  var connection = new Sequelize('burgers_db', 'root');
 }
 
-var Burgers = sequelize.define('Burgers', {
+var Burgers = connection.define('Burgers', {
  burgerName: Sequelize.STRING,
  devoured: {type:Sequelize.BOOLEAN, allowNull: false, defaultValue: false}
   // lastname: Sequelize.STRING
@@ -37,7 +37,7 @@ var Burgers = sequelize.define('Burgers', {
 
 app.get('/', function(req,res) {
 var s = 'SELECT * FROM burgers;';
-sequelize.query(s).spread(function(results, metadata) {
+connection.query(s).spread(function(results, metadata) {
   // Results will be an empty array and metadata will contain the number of affected rows.
   res.render('index', {results});
 })
@@ -61,7 +61,7 @@ app.post("/devour/:burgerName", function(req, res) {
   });
 });
 
- sequelize.sync();
+ connection.sync();
 
 
 app.listen(PORT,function(){
