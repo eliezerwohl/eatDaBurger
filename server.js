@@ -61,7 +61,7 @@ app.post("/devour/:burgerName", function(req, res) {
   });
 });
 
- connection.sync();
+ sequelize.sync();
 
 
 app.listen(PORT,function(){
