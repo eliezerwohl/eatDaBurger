@@ -26,7 +26,6 @@
     "express-session": "^1.13.0",
     "method-override": "^2.3.5",
     "mysql": "^2.10.2",
-    "sequelize": "^3.19.3",
-    "sequelize-heroku": "^1.0.0"
+    "sequelize": "^3.19.3"
   }
 }
